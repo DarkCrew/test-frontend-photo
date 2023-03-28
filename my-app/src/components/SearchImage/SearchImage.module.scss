@@ -1,0 +1,117 @@
+@import url('../../variables/Variables.module.scss');
+
+.searchImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 500px;
+  padding: 80px 0;
+  background: url('../../assets/images/backround.jpg');
+  box-sizing: border-box;
+}
+
+.background {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+  background: var(--color-black);
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 630px;
+  z-index: 10;
+}
+
+.title {
+  font-family: 'PlusJakartaSans-SemiBold';
+  text-align: start;
+  color: var(--color-white);
+  font-size: 33px;
+  line-height: 40px;
+  letter-spacing: -0.02em;
+}
+
+.form {
+  display: flex;
+  height: 50px;
+  margin-top: 30px;
+
+  .inputSearch {
+    max-height: 100%;
+    padding: 15px 4px 15px 20px;
+    width: calc(100% - 55px);
+    font-family: 'PlusJakartaSans-SemiBold';
+    font-size: 18px;
+    color: var(--color-light-gray);
+    border-radius: 0;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    -webkit-appearance: none;
+    border: 1px solid #f7f7f7;
+    box-sizing: border-box;
+    background: var(--color-white);
+    outline: none;
+  }
+
+  .btnSearch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 55px;
+    border: 1px solid #f7f7f7;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background: var(--color-white);
+
+    img {
+      width: 25px;
+      min-width: 25px;
+      height: 25px;
+      min-height: 25px;
+      transition: fill 0.15s ease;
+    }
+  }
+}
+
+.examples {
+  margin-top: 30px;
+
+  p {
+    font-family: 'PlusJakartaSans-SemiBold';
+    font-size: 16px;
+    text-align: start;
+    color: var(--color-white);
+
+    span {
+      color: hsla(0, 0%, 100%, 0.7);
+    }
+  }
+}
+
+.author {
+  position: absolute;
+  font-family: 'PlusJakartaSans-SemiBold';
+  font-size: 14px;
+  color: var(--color-white);
+  right: 15px;
+  bottom: 15px;
+  z-index: 100;
+
+  span {
+    color: hsla(0, 0%, 100%, 0.7);
+  }
+}

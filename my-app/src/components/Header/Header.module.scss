@@ -1,0 +1,46 @@
+@import url('../../variables/Variables.module.scss');
+
+.header {
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  z-index: 100;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  height: 50px;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  height: 50px;
+
+  li {
+    color: var(--color-white);
+    font-family: 'PlusJakartaSans-SemiBold';
+    margin-right: 15px;
+    font-size: 16px;
+  }
+  li:last-child {
+    margin-right: 0;
+  }
+
+  .btnJoin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    height: 100%;
+    color: var(--color-black);
+    padding: 0 20px;
+    background: var(--color-white);
+  }
+}
