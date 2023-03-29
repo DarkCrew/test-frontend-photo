@@ -1,0 +1,48 @@
+@import url('../../variables/Variables.module.scss');
+
+.main {
+  margin-top: 30px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+
+  p {
+    color: var(--color-gray);
+    font-family: 'PlusJakartaSans-SemiBold';
+    margin-top: 15px;
+    font-size: 23px;
+  }
+
+  select {
+    height: 100%;
+    color: var(--color-black);
+    font-size: 16px;
+    font-family: 'PlusJakartaSans-SemiBold';
+    padding: 0 20px;
+    text-decoration: none;
+    letter-spacing: -0.015em;
+    border: 1px solid #dfdfe0;
+    border-radius: 6px;
+    outline: none;
+  }
+}
+
+.photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+
+  img {
+    width: 380px;
+  }
+}

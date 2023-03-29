@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 
 import Header from 'components/Header/Header';
+import Main from 'components/Main/Main';
 import SearchImage from 'components/SearchImage/SearchImage';
 
 import './App.css';
@@ -12,6 +13,7 @@ const App = (): ReactElement => {
     <div className="App">
       <Header />
       <SearchImage />
+      <Main />
     </div>
   );
 };
