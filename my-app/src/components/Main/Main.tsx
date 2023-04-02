@@ -23,11 +23,11 @@ const Main = (): ReactElement => {
           </div>
           <div className={styles.photos}>
             <Image />
-            <img src={plug2} alt="plug" />
-            <img src={plug3} alt="plug" />
-            <img src={plug4} alt="plug" />
-            <img src={plug5} alt="plug" />
-            <img src={plug6} alt="plug" />
+            <Image />
+            <Image />
+            <Image />
+            <Image />
+            <Image />
           </div>
         </div>
       </div>
