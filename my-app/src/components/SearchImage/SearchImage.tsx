@@ -1,10 +1,26 @@
 import React, { ReactElement } from 'react';
+import KEY_WORDS from 'store/KeyWords';
 
 import searchBtn from '../../assets/images/search.png';
 
 import styles from './SearchImage.module.scss';
 
 const SearchImage = (): ReactElement => {
+  const getRandomNumbers = (): number[] => {
+    const randomNumbersArray: number[] = [];
+    for (let i = 0; i < 7; i += 1) {
+      const newNumber = Math.floor(1 + Math.random() * 40);
+      if (randomNumbersArray.includes(newNumber)) {
+        i -= 1;
+      } else {
+        randomNumbersArray.push(newNumber);
+      }
+    }
+    return randomNumbersArray;
+  };
+
+  const randomNumbersArr: number[] = getRandomNumbers();
+
   return (
     <div className={styles.searchImage}>
       <div className="container">
@@ -25,7 +41,14 @@ const SearchImage = (): ReactElement => {
             </form>
             <div className={styles.examples}>
               <p>
-                <span>Trending: </span>easter, spring, office, sunset, mountain
+                <span>Trending: </span> &nbsp;
+                {randomNumbersArr.map((elem, index) => {
+                  return index !== randomNumbersArr.length - 1 ? (
+                    <p>{`${KEY_WORDS[elem]},`}</p>
+                  ) : (
+                    <p>{`${KEY_WORDS[elem]}`}</p>
+                  );
+                })}
               </p>
             </div>
           </div>
