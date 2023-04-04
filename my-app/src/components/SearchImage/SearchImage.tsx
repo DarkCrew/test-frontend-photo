@@ -1,5 +1,8 @@
 import React, { ReactElement } from 'react';
+import { Link } from 'react-router-dom';
 import KEY_WORDS from 'store/KeyWords';
+
+import Header from 'components/Header/Header';
 
 import searchBtn from '../../assets/images/search.png';
 
@@ -22,43 +25,46 @@ const SearchImage = (): ReactElement => {
   const randomNumbersArr: number[] = getRandomNumbers();
 
   return (
-    <div className={styles.searchImage}>
-      <div className="container">
-        <div className={styles.container}>
-          <div className={styles.main}>
-            <h2 className={styles.title}>
-              The best free stock photos, royalty free images & videos shared by creators.
-            </h2>
-            <form className={styles.form}>
-              <input
-                type="text"
-                placeholder="Search for free photos"
-                className={styles.inputSearch}
-              />
-              <button type="submit" className={styles.btnSearch}>
-                <img src={searchBtn} alt="search" />
-              </button>
-            </form>
-            <div className={styles.examples}>
-              <p>
-                <span>Trending: </span> &nbsp;
-                {randomNumbersArr.map((elem, index) => {
-                  return index !== randomNumbersArr.length - 1 ? (
-                    <p>{`${KEY_WORDS[elem]},`}</p>
-                  ) : (
-                    <p>{`${KEY_WORDS[elem]}`}</p>
-                  );
-                })}
-              </p>
+    <>
+      <Header />
+      <div className={styles.searchImage}>
+        <div className="container">
+          <div className={styles.container}>
+            <div className={styles.main}>
+              <h2 className={styles.title}>
+                The best free stock photos, royalty free images & videos shared by creators.
+              </h2>
+              <form className={styles.form}>
+                <input
+                  type="text"
+                  placeholder="Search for free photos"
+                  className={styles.inputSearch}
+                />
+                <button type="submit" className={styles.btnSearch}>
+                  <img src={searchBtn} alt="search" />
+                </button>
+              </form>
+              <div className={styles.examples}>
+                <p>
+                  <span>Trending: </span> &nbsp;
+                  {randomNumbersArr.map((elem, index) => {
+                    return index !== randomNumbersArr.length - 1 ? (
+                      <Link to="/category">{`${KEY_WORDS[elem]},`}</Link>
+                    ) : (
+                      <Link to="/category">{`${KEY_WORDS[elem]}`}</Link>
+                    );
+                  })}
+                </p>
+              </div>
             </div>
           </div>
+          <p className={styles.author}>
+            <span>Photo by </span>Helena Jankovičová Kováčová
+          </p>
         </div>
-        <p className={styles.author}>
-          <span>Photo by </span>Helena Jankovičová Kováčová
-        </p>
+        <div className={styles.background} />
       </div>
-      <div className={styles.background} />
-    </div>
+    </>
   );
 };
 

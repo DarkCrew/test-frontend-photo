@@ -1,0 +1,29 @@
+@import url('../../variables/Variables.module.scss');
+
+.header {
+  height: 80px;
+  width: 100%;
+  position: fixed;
+  background: var(--color-gray);
+}
+
+.category {
+  padding-top: 80px;
+}
+
+.container {
+  margin: 30px 0;
+}
+
+.title {
+  color: var(--color-gray);
+  font-size: 30px;
+  font-family: 'PlusJakartaSans-SemiBold';
+}
+
+.photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 30px 0;
+}

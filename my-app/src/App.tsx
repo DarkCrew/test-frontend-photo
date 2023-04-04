@@ -1,8 +1,9 @@
 import React, { ReactElement } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import CategoryPage from 'pages/CategoryPage/CategoryPage';
+import HomePage from 'pages/HomePage/HomePage';
 
 import Header from 'components/Header/Header';
-import Main from 'components/Main/Main';
-import SearchImage from 'components/SearchImage/SearchImage';
 
 import './App.css';
 import './styles/normalize.css';
@@ -11,9 +12,10 @@ import './styles/index.scss';
 const App = (): ReactElement => {
   return (
     <div className="App">
-      <Header />
-      <SearchImage />
-      <Main />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/category" element={<CategoryPage />} />
+      </Routes>
     </div>
   );
 };

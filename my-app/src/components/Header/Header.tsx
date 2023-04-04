@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { Link } from 'react-router-dom';
 import Logo from 'assets/images/Logo';
 
 import styles from './Header.module.scss';
@@ -8,9 +9,9 @@ const Header = (): ReactElement => {
     <header className={styles.header}>
       <div className="container">
         <nav className={styles.container}>
-          <div className={styles.logo}>
+          <Link to="/" className={styles.logo}>
             <Logo />
-          </div>
+          </Link>
           <ul className={styles.menu}>
             <li>Explore</li>
             <li>License</li>
