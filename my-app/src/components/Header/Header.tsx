@@ -1,10 +1,18 @@
+/* eslint-disable react/require-default-props */
+/* eslint-disable @typescript-eslint/naming-convention */
 import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from 'assets/images/Logo';
 
+import Search from 'components/Search/Search';
+
 import styles from './Header.module.scss';
 
-const Header = (): ReactElement => {
+interface Props {
+  search?: boolean;
+}
+
+const Header = ({ search }: Props): ReactElement => {
   return (
     <header className={styles.header}>
       <div className="container">
@@ -12,6 +20,7 @@ const Header = (): ReactElement => {
           <Link to="/" className={styles.logo}>
             <Logo />
           </Link>
+          {search && <Search />}
           <ul className={styles.menu}>
             <li>Explore</li>
             <li>License</li>

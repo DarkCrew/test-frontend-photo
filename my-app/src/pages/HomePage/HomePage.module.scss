@@ -1,0 +1,10 @@
+@import url('../../variables/Variables.module.scss');
+
+.header {
+  height: 80px;
+  width: 100%;
+  top: 0;
+  position: fixed;
+  background: var(--color-gray);
+  z-index: 1000;
+}

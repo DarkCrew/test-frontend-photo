@@ -46,4 +46,4 @@ const SearchImage = (): ReactElement => {
   );
 };
 
-export default SearchImage;
+export default React.memo(SearchImage);

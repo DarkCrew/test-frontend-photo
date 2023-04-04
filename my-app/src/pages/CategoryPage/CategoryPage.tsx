@@ -7,6 +7,7 @@
 import React, { ReactElement } from 'react';
 import { PhotoItem } from 'core/api/Models';
 
+import Header from 'components/Header/Header';
 import Image from 'components/Image/Image';
 
 import styles from './CategoryPage.module.scss';
@@ -34,7 +35,9 @@ const CategoryPage = (): ReactElement => {
 
   return (
     <>
-      <div className={styles.header} />
+      <div className={styles.header}>
+        <Header search />
+      </div>
       <div className={styles.category}>
         <div className="container">
           <div className={styles.container}>
