@@ -28,3 +28,48 @@
   gap: 30px;
   margin: 30px 0;
 }
+
+.menu {
+  display: flex;
+  justify-content: flex-end;
+  height: 50px;
+  gap: 10px;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 100%;
+    padding: 10px;
+    color: var(--color-black);
+    font-size: 16px;
+    font-family: 'PlusJakartaSans-SemiBold';
+    text-decoration: none;
+    letter-spacing: -0.015em;
+    border: 1px solid #dfdfe0;
+    border-radius: 6px;
+    outline: none;
+    user-select: none;
+
+    img {
+      height: 100%;
+      pointer-events: none;
+    }
+  }
+
+  .orientation,
+  .size {
+    cursor: pointer;
+  }
+
+  .size {
+    color: var(--color-black);
+    font-size: 16px;
+    font-family: 'PlusJakartaSans-SemiBold';
+    text-decoration: none;
+    letter-spacing: -0.015em;
+    border: 1px solid #dfdfe0;
+    border-radius: 6px;
+    outline: none;
+  }
+}
