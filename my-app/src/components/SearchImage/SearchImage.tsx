@@ -1,28 +1,15 @@
 import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import KEY_WORDS from 'store/KeyWords';
+import getRandomNumbers from 'utils/GetRandomNumbers';
 
 import Header from 'components/Header/Header';
-
-import searchBtn from '../../assets/images/search.png';
+import Search from 'components/Search/Search';
 
 import styles from './SearchImage.module.scss';
 
 const SearchImage = (): ReactElement => {
-  const getRandomNumbers = (): number[] => {
-    const randomNumbersArray: number[] = [];
-    for (let i = 0; i < 7; i += 1) {
-      const newNumber = Math.floor(1 + Math.random() * 40);
-      if (randomNumbersArray.includes(newNumber)) {
-        i -= 1;
-      } else {
-        randomNumbersArray.push(newNumber);
-      }
-    }
-    return randomNumbersArray;
-  };
-
-  const randomNumbersArr: number[] = getRandomNumbers();
+  const randomNumbersArr: number[] = getRandomNumbers(7, 1, 40);
 
   return (
     <>
@@ -34,16 +21,7 @@ const SearchImage = (): ReactElement => {
               <h2 className={styles.title}>
                 The best free stock photos, royalty free images & videos shared by creators.
               </h2>
-              <form className={styles.form}>
-                <input
-                  type="text"
-                  placeholder="Search for free photos"
-                  className={styles.inputSearch}
-                />
-                <button type="submit" className={styles.btnSearch}>
-                  <img src={searchBtn} alt="search" />
-                </button>
-              </form>
+              <Search />
               <div className={styles.examples}>
                 <p>
                   <span>Trending: </span> &nbsp;

@@ -1,0 +1,44 @@
+@import url('../../variables/Variables.module.scss');
+
+.form {
+  display: flex;
+  height: 50px;
+  margin-top: 30px;
+
+  .inputSearch {
+    max-height: 100%;
+    padding: 15px 4px 15px 20px;
+    width: calc(100% - 55px);
+    font-family: 'PlusJakartaSans-SemiBold';
+    font-size: 18px;
+    color: var(--color-light-gray);
+    border-radius: 0;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    -webkit-appearance: none;
+    border: 1px solid #f7f7f7;
+    box-sizing: border-box;
+    background: var(--color-white);
+    outline: none;
+  }
+
+  .btnSearch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 55px;
+    border: 1px solid #f7f7f7;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background: var(--color-white);
+
+    img {
+      width: 25px;
+      min-width: 25px;
+      height: 25px;
+      min-height: 25px;
+      transition: fill 0.15s ease;
+    }
+  }
+}
