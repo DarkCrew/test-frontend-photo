@@ -5,14 +5,13 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, { ReactElement } from 'react';
 import { PhotoItem } from 'core/api/Models';
+import PhotosApi from 'core/api/PhotosApi';
 
 import Loader from 'components/Loader/Loader';
 
 import Image from '../Image/Image';
 
 import styles from './Main.module.scss';
-
-const API_KEY = '563492ad6f917000010000014640aabb4e9d420cbe1c0df7daf4c2bf';
 
 const Main = (): ReactElement => {
   const [photos, setPhotos] = React.useState([]);
@@ -24,14 +23,10 @@ const Main = (): ReactElement => {
     }
   }, []);
 
-  const getPhotos = async () => {
+  const getAxiosPhotos = async () => {
     setFetching(true);
-    const data = await fetch('https://api.pexels.com/v1/search?query=bmw', {
-      headers: {
-        Authorization: API_KEY,
-      },
-    });
-    const { photos } = await data.json();
+    const { data } = await PhotosApi.getPhotos('bmw');
+    const { photos } = data;
     setPhotos(photos);
     setTimeout(() => {
       setFetching(false);
@@ -44,7 +39,7 @@ const Main = (): ReactElement => {
       <div className="container">
         <div className={styles.container}>
           <div className={styles.menu}>
-            <p onClick={getPhotos}>Free Stock Photos</p>
+            <p onClick={getAxiosPhotos}>Free Stock Photos</p>
             <select>
               <option>Trending</option>
               <option>New</option>
