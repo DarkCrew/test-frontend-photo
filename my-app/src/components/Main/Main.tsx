@@ -6,6 +6,8 @@
 import React, { ReactElement } from 'react';
 import { PhotoItem } from 'core/api/Models';
 
+import Loader from 'components/Loader/Loader';
+
 import Image from '../Image/Image';
 
 import styles from './Main.module.scss';
@@ -14,6 +16,7 @@ const API_KEY = '563492ad6f917000010000014640aabb4e9d420cbe1c0df7daf4c2bf';
 
 const Main = (): ReactElement => {
   const [photos, setPhotos] = React.useState([]);
+  const [fetching, setFetching] = React.useState(false);
 
   React.useEffect(() => {
     if (localStorage.getItem('likes-photo') === null) {
@@ -22,6 +25,7 @@ const Main = (): ReactElement => {
   }, []);
 
   const getPhotos = async () => {
+    setFetching(true);
     const data = await fetch('https://api.pexels.com/v1/search?query=bmw', {
       headers: {
         Authorization: API_KEY,
@@ -29,10 +33,14 @@ const Main = (): ReactElement => {
     });
     const { photos } = await data.json();
     setPhotos(photos);
+    setTimeout(() => {
+      setFetching(false);
+    }, 1000);
   };
 
   return (
     <div className={styles.main}>
+      {fetching && <Loader />}
       <div className="container">
         <div className={styles.container}>
           <div className={styles.menu}>
