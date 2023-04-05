@@ -55,31 +55,3 @@
     font-family: 'PlusJakartaSans-SemiBold';
   }
 }
-
-.download,
-.like,
-.likeActive {
-  height: 40px;
-  width: 40px;
-  border-radius: 10px;
-  padding: 10px;
-  cursor: pointer;
-  background: var(--color-white);
-  transition: 0.5s;
-
-  img {
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
-    pointer-events: none;
-  }
-}
-
-.likeActive {
-  background: var(--color-green);
-}
-
-.download:hover,
-.like:hover {
-  filter: brightness(90%);
-}
