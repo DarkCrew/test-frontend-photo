@@ -5,7 +5,9 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, { ReactElement } from 'react';
+import { useSelector } from 'react-redux';
 import { PhotoItem } from 'core/api/Models';
+import { RootState } from 'store/redux/store';
 
 import Header from 'components/Header/Header';
 import Image from 'components/Image/Image';
@@ -17,11 +19,13 @@ import sizeImage from '../../assets/images/photosize.png';
 
 import styles from './CategoryPage.module.scss';
 
-const API_KEY = '563492ad6f917000010000014640aabb4e9d420cbe1c0df7daf4c2bf';
-
 const CategoryPage = (): ReactElement => {
-  const [photos, setPhotos] = React.useState([]);
   const [orientation, setOrientation] = React.useState(orientation_standart);
+
+  const photos = useSelector((state: RootState) => state.search.photos);
+  const searchValRedux = useSelector((state: RootState) => state.search.value);
+
+  console.log('rendered category');
 
   const changeOrientation = (): void => {
     if (orientation === orientation_standart) {
@@ -40,16 +44,6 @@ const CategoryPage = (): ReactElement => {
       localStorage.setItem('likes-photo', JSON.stringify([]));
     }
   }, []);
-
-  const getPhotos = async () => {
-    const data = await fetch('https://api.pexels.com/v1/search?query=bmw', {
-      headers: {
-        Authorization: API_KEY,
-      },
-    });
-    const { photos } = await data.json();
-    setPhotos(photos);
-  };
 
   return (
     <>
@@ -73,9 +67,7 @@ const CategoryPage = (): ReactElement => {
                 </select>
               </li>
             </ul>
-            <p className={styles.title} onClick={getPhotos}>
-              New Your Photos
-            </p>
+            <p className={styles.title}>{searchValRedux} Photos</p>
             <div className={styles.photos}>
               {photos.map((elem: PhotoItem) => {
                 return <Image {...elem} />;

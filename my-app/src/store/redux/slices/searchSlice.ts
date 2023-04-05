@@ -5,10 +5,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export interface SearchState {
   value: string;
+  photos: [];
 }
 
 const initialState: SearchState = {
   value: '',
+  photos: [],
 };
 
 export const searchSlice = createSlice({
@@ -18,9 +20,12 @@ export const searchSlice = createSlice({
     changeValue: (state, action: PayloadAction<string>) => {
       state.value = String(action.payload);
     },
+    getPhotos: (state, action: PayloadAction<[]>) => {
+      state.photos = action.payload;
+    },
   },
 });
 
-export const { changeValue } = searchSlice.actions;
+export const { changeValue, getPhotos } = searchSlice.actions;
 
 export default searchSlice.reducer;

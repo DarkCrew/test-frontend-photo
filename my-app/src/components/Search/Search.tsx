@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeValue } from 'store/redux/slices/searchSlice';
+import { Link, useNavigate } from 'react-router-dom';
+import PhotosApi from 'core/api/PhotosApi';
+import { changeValue, getPhotos } from 'store/redux/slices/searchSlice';
 import type { RootState } from 'store/redux/store';
 
 import searchBtn from '../../assets/images/search.png';
@@ -8,8 +11,28 @@ import searchBtn from '../../assets/images/search.png';
 import styles from './Search.module.scss';
 
 const Search = (): ReactElement => {
-  const searchValue = useSelector((state: RootState) => state.search.value);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const searchValRedux = useSelector((state: RootState) => state.search.value);
+
+  const [searchVal, setSearchVal] = React.useState(searchValRedux);
+
+  const getAxiosPhotos = async () => {
+    dispatch(changeValue(String(searchVal)));
+
+    const { data } = await PhotosApi.getPhotos(String(searchVal));
+    const { photos } = data;
+    dispatch(getPhotos(photos));
+    console.log('axios');
+  };
+
+  const getAxiosPhotosByEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      navigate('/category');
+      getAxiosPhotos();
+    }
+  };
 
   return (
     <form className={styles.form}>
@@ -17,14 +40,15 @@ const Search = (): ReactElement => {
         type="text"
         placeholder="Search for free photos"
         className={styles.inputSearch}
-        value={searchValue}
+        value={searchVal}
         onChange={(event): void => {
-          dispatch(changeValue(String(event.target.value)));
+          setSearchVal(event.target.value);
         }}
+        onKeyDown={getAxiosPhotosByEnter}
       />
-      <button type="submit" className={styles.btnSearch}>
+      <Link to="/category" className={styles.btnSearch} onClick={getAxiosPhotos}>
         <img src={searchBtn} alt="search" />
-      </button>
+      </Link>
     </form>
   );
 };
