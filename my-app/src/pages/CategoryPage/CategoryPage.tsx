@@ -25,8 +25,6 @@ const CategoryPage = (): ReactElement => {
   const photos = useSelector((state: RootState) => state.search.photos);
   const searchValRedux = useSelector((state: RootState) => state.search.value);
 
-  console.log('rendered category');
-
   const changeOrientation = (): void => {
     if (orientation === orientation_standart) {
       setOrientation(orientation_port);

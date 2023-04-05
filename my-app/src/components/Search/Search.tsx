@@ -23,7 +23,6 @@ const Search = (): ReactElement => {
     const { data } = await PhotosApi.getPhotos(String(searchVal));
     const { photos } = data;
     dispatch(getPhotos(photos));
-    console.log('axios');
   };
 
   const getAxiosPhotosByEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
