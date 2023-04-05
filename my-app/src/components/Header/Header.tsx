@@ -29,12 +29,14 @@ const Header = ({ search }: Props): ReactElement => {
             <Logo />
           </Link>
           {search && <Search />}
-          <ul className={styles.menu}>
-            <li>Explore</li>
-            <li>License</li>
-            <li>Upload</li>
-            <li className={styles.btnJoin}>Join</li>
-          </ul>
+          {!search && (
+            <ul className={styles.menu}>
+              <li>Explore</li>
+              <li>License</li>
+              <li>Upload</li>
+              <li className={styles.btnJoin}>Join</li>
+            </ul>
+          )}
         </nav>
       </div>
     </header>
