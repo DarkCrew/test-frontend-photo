@@ -9,6 +9,7 @@ import { RootState } from 'store/redux/store';
 
 import Header from 'components/Header/Header';
 import Image from 'components/Image/Image';
+import NoResults from 'components/NoResults/NoResults';
 import OrientationFilter from 'components/OrientationFilter/OrientationFilter';
 import SizeFilter from 'components/SizeFilter/SizeFilter';
 
@@ -53,12 +54,13 @@ const CategoryPage = (): ReactElement => {
               <OrientationFilter setOrientation={setOrientation} />
               <SizeFilter setSizeImg={setSizeImg} />
             </ul>
-            <p className={styles.title}>{searchValRedux} Photos</p>
+            {photosRedux.length !== 0 && <p className={styles.title}>{searchValRedux} Photos</p>}
             <div className={styles.photos}>
               {photosRedux.map((elem: PhotoItem) => {
                 return <Image {...elem} />;
               })}
             </div>
+            {photosRedux.length === 0 && <NoResults />}
           </div>
         </div>
       </div>
