@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import CategoryPage from 'pages/CategoryPage/CategoryPage';
 import HomePage from 'pages/HomePage/HomePage';
+import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 
 import { store } from './store/redux/store';
 
@@ -17,6 +18,7 @@ const App = (): ReactElement => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/category" element={<CategoryPage />} />
+          <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </div>
     </Provider>

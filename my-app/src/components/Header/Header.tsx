@@ -12,9 +12,10 @@ import styles from './Header.module.scss';
 
 interface Props {
   search?: boolean;
+  clear?: boolean;
 }
 
-const Header = ({ search }: Props): ReactElement => {
+const Header = ({ search, clear }: Props): ReactElement => {
   const dispatch = useDispatch();
 
   const clearSearch = (): void => {
@@ -28,7 +29,7 @@ const Header = ({ search }: Props): ReactElement => {
           <Link to="/" className={styles.logo} onClick={clearSearch}>
             <Logo />
           </Link>
-          {search && <Search />}
+          {search && !clear && <Search />}
           {!search && (
             <ul className={styles.menu}>
               <li>Explore</li>
