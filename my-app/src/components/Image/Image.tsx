@@ -6,7 +6,7 @@ import LikeButton from 'components/LikeButton/LikeButton';
 
 import styles from './Image.module.scss';
 
-const Image = ({ photographer, src, id }: PhotoItem): ReactElement => {
+const Image = ({ photographer, photographer_url, src, id }: PhotoItem): ReactElement => {
   const [visible, setVisible] = React.useState(false);
 
   const changeVisible = (): void => {
@@ -23,7 +23,7 @@ const Image = ({ photographer, src, id }: PhotoItem): ReactElement => {
             </div>
             <div className={styles.lowerContainer}>
               <a
-                href="https://www.pexels.com/@yunustug/"
+                href={`${photographer_url}`}
                 target="_blank"
                 className={styles.creator}
                 rel="noreferrer"
