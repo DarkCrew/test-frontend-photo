@@ -56,20 +56,4 @@
       pointer-events: none;
     }
   }
-
-  .orientation,
-  .size {
-    cursor: pointer;
-  }
-
-  .size {
-    color: var(--color-black);
-    font-size: 16px;
-    font-family: 'PlusJakartaSans-SemiBold';
-    text-decoration: none;
-    letter-spacing: -0.015em;
-    border: 1px solid #dfdfe0;
-    border-radius: 6px;
-    outline: none;
-  }
 }

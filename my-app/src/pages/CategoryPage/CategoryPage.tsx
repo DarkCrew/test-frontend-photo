@@ -1,40 +1,32 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/jsx-no-undef */
-/* eslint-disable @typescript-eslint/no-shadow */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, { ReactElement } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { PhotoItem } from 'core/api/Models';
+import PhotosApi from 'core/api/PhotosApi';
+import { getPhotos } from 'store/redux/slices/searchSlice';
 import { RootState } from 'store/redux/store';
 
 import Header from 'components/Header/Header';
 import Image from 'components/Image/Image';
-
-import orientation_land from '../../assets/images/orientation_land.png';
-import orientation_port from '../../assets/images/orientation_port.png';
-import orientation_standart from '../../assets/images/orientation_standart.png';
-import sizeImage from '../../assets/images/photosize.png';
+import OrientationFilter from 'components/OrientationFilter/OrientationFilter';
+import SizeFilter from 'components/SizeFilter/SizeFilter';
 
 import styles from './CategoryPage.module.scss';
 
 const CategoryPage = (): ReactElement => {
-  const [orientation, setOrientation] = React.useState(orientation_standart);
+  const [orientation, setOrientation] = React.useState<string | undefined>(undefined);
+  const [sizeImg, setSizeImg] = React.useState<string | undefined>(undefined);
 
-  const photos = useSelector((state: RootState) => state.search.photos);
+  const photosRedux = useSelector((state: RootState) => state.search.photos);
   const searchValRedux = useSelector((state: RootState) => state.search.value);
 
-  const changeOrientation = (): void => {
-    if (orientation === orientation_standart) {
-      setOrientation(orientation_port);
-    }
-    if (orientation === orientation_port) {
-      setOrientation(orientation_land);
-    }
-    if (orientation === orientation_land) {
-      setOrientation(orientation_standart);
-    }
+  const dispatch = useDispatch();
+
+  const getAxiosPhotos = async (orient: string, size: string): Promise<void> => {
+    const { data } = await PhotosApi.getPhotos(searchValRedux, orient, size);
+    const { photos } = data;
+    dispatch(getPhotos(photos));
   };
 
   React.useEffect(() => {
@@ -42,6 +34,12 @@ const CategoryPage = (): ReactElement => {
       localStorage.setItem('likes-photo', JSON.stringify([]));
     }
   }, []);
+
+  React.useEffect(() => {
+    if (searchValRedux !== '' && (orientation !== undefined || sizeImg !== undefined)) {
+      getAxiosPhotos(String(orientation), String(sizeImg));
+    }
+  }, [orientation, sizeImg]);
 
   return (
     <>
@@ -52,22 +50,12 @@ const CategoryPage = (): ReactElement => {
         <div className="container">
           <div className={styles.container}>
             <ul className={styles.menu}>
-              <li className={styles.orientation} onClick={changeOrientation}>
-                <img src={orientation} alt="orientation" />
-                Orientation
-              </li>
-              <li>
-                <img src={sizeImage} alt="size" />
-                <select className={styles.size}>
-                  <option>Large</option>
-                  <option>Medium</option>
-                  <option>Small</option>
-                </select>
-              </li>
+              <OrientationFilter setOrientation={setOrientation} />
+              <SizeFilter setSizeImg={setSizeImg} />
             </ul>
             <p className={styles.title}>{searchValRedux} Photos</p>
             <div className={styles.photos}>
-              {photos.map((elem: PhotoItem) => {
+              {photosRedux.map((elem: PhotoItem) => {
                 return <Image {...elem} />;
               })}
             </div>
