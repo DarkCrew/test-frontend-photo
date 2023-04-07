@@ -25,7 +25,7 @@
 .photos {
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 30px 2.5%;
   margin: 30px 0;
 }
 
@@ -55,5 +55,44 @@
       height: 100%;
       pointer-events: none;
     }
+  }
+}
+
+@media (max-width: 1024px) {
+  .photos {
+    gap: 20px 2.5%;
+  }
+
+  .title {
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
+  .menu {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .photos {
+    gap: 20px 3%;
+  }
+}
+
+@media (max-width: 425px) {
+  .category {
+    padding-top: 120px;
+  }
+
+  .header {
+    height: 120px;
+  }
+
+  .photos {
+    gap: 30px;
+  }
+
+  .title {
+    font-size: 16px;
   }
 }

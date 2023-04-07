@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 
 const Logo = (): ReactElement => {
   return (
-    <svg width="130" height="50" viewBox="0 0 130.318 50">
+    <svg width="130" height="100%" viewBox="0 0 130.318 50">
       <g transform="translate(-3894 2762)">
         <rect width="50" height="50" rx="8" transform="translate(3894 -2762)" fill="#07a081" />
         <path

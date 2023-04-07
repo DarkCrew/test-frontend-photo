@@ -8,3 +8,9 @@
   background: var(--color-gray);
   z-index: 1000;
 }
+
+@media (max-width: 425px) {
+  .header {
+    height: 120px;
+  }
+}

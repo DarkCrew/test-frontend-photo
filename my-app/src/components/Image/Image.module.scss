@@ -2,10 +2,11 @@
 
 .image {
   display: flex;
+  width: 31.6%;
   position: relative;
 
   img {
-    width: 380px;
+    width: 100%;
     object-fit: cover;
   }
 }
@@ -53,5 +54,17 @@
     color: var(--color-white);
     font-size: 16px;
     font-family: 'PlusJakartaSans-SemiBold';
+  }
+}
+
+@media (max-width: 768px) {
+  .image {
+    width: 48.5%;
+  }
+}
+
+@media (max-width: 425px) {
+  .image {
+    width: 100%;
   }
 }
