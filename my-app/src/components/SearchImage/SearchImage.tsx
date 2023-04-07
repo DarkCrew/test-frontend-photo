@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, { ReactElement } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { PhotoItem } from 'core/api/Models';
 import KEY_WORDS from 'store/KeyWords';
 import { changeValue } from 'store/redux/slices/searchSlice';
+import { RootState } from 'store/redux/store';
 import getRandomNumbers from 'utils/GetRandomNumbers';
 
 import Header from 'components/Header/Header';
@@ -13,11 +15,24 @@ import styles from './SearchImage.module.scss';
 
 const SearchImage = (): ReactElement => {
   const randomNumbersArr: number[] = getRandomNumbers(7, 1, 40);
+  const getRandomNumber: number = +getRandomNumbers(1, 1, 15);
+  const photosRedux: PhotoItem[] = useSelector((state: RootState) => state.search.photos);
   const dispatch = useDispatch();
 
   const search = async (searchVal: string) => {
     dispatch(changeValue(String(searchVal)));
   };
+
+  let randomPhotoSrc = '';
+  let randomPhotoPhotographer = '';
+  let randomPhotoPhotographerUrl = '';
+
+  if (photosRedux.length > 0 && photosRedux[getRandomNumber] !== undefined) {
+    const randomPhoto: PhotoItem = photosRedux[getRandomNumber] as PhotoItem;
+    randomPhotoSrc = randomPhoto.src.original;
+    randomPhotoPhotographer = randomPhoto.photographer;
+    randomPhotoPhotographerUrl = randomPhoto.photographer_url;
+  }
 
   return (
     <>
@@ -54,11 +69,18 @@ const SearchImage = (): ReactElement => {
               </div>
             </div>
           </div>
-          <p className={styles.author}>
-            <span>Photo by </span>Helena Jankovičová Kováčová
-          </p>
+          <a
+            href={randomPhotoPhotographerUrl}
+            target="_blank"
+            className={styles.author}
+            rel="noreferrer"
+          >
+            <span>Photo by </span>
+            {randomPhotoPhotographer}
+          </a>
         </div>
         <div className={styles.background} />
+        <img className={styles.searchImageBackGround} src={randomPhotoSrc} alt="" />
       </div>
     </>
   );

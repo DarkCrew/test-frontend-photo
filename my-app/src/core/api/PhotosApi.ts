@@ -17,6 +17,12 @@ class PhotosApi {
     const result = await ManagerAppApi.get(url);
     return result;
   }
+
+  static async getCuratedPhotos(url: string): Promise<AxiosResponse> {
+    const newUrl = url.slice(url.search('curated'), url.length);
+    const result = await ManagerAppApi.get(newUrl);
+    return result;
+  }
 }
 
 export default PhotosApi;

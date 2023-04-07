@@ -4,8 +4,10 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, { ReactElement } from 'react';
+import { useSelector } from 'react-redux';
 import { PhotoItem } from 'core/api/Models';
 import PhotosApi from 'core/api/PhotosApi';
+import { RootState } from 'store/redux/store';
 
 import Loader from 'components/Loader/Loader';
 
@@ -16,6 +18,7 @@ import styles from './Main.module.scss';
 const Main = (): ReactElement => {
   const [photos, setPhotos] = React.useState([]);
   const [fetching, setFetching] = React.useState(false);
+  const photosRedux = useSelector((state: RootState) => state.search.photos);
 
   React.useEffect(() => {
     if (localStorage.getItem('likes-photo') === null) {
@@ -46,7 +49,7 @@ const Main = (): ReactElement => {
             </select>
           </div>
           <div className={styles.photos}>
-            {photos.map((elem: PhotoItem) => {
+            {photosRedux.map((elem: PhotoItem) => {
               return <Image {...elem} />;
             })}
           </div>
