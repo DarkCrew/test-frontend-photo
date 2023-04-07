@@ -2,8 +2,7 @@
 import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import PhotosApi from 'core/api/PhotosApi';
-import { changeValue, getPhotos } from 'store/redux/slices/searchSlice';
+import { changeValue } from 'store/redux/slices/searchSlice';
 import type { RootState } from 'store/redux/store';
 
 import searchBtn from '../../assets/images/search.png';
@@ -17,19 +16,15 @@ const Search = (): ReactElement => {
 
   const [searchVal, setSearchVal] = React.useState(searchValRedux);
 
-  const getAxiosPhotos = async () => {
+  const search = async () => {
     dispatch(changeValue(String(searchVal)));
-
-    const { data } = await PhotosApi.getPhotos(String(searchVal));
-    const { photos } = data;
-    dispatch(getPhotos(photos));
   };
 
-  const getAxiosPhotosByEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const searchByEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       event.preventDefault();
       navigate('/category');
-      getAxiosPhotos();
+      search();
     }
   };
 
@@ -43,9 +38,9 @@ const Search = (): ReactElement => {
         onChange={(event): void => {
           setSearchVal(event.target.value);
         }}
-        onKeyDown={getAxiosPhotosByEnter}
+        onKeyDown={searchByEnter}
       />
-      <Link to="/category" className={styles.btnSearch} onClick={getAxiosPhotos}>
+      <Link to="/category" className={styles.btnSearch} onClick={search}>
         <img src={searchBtn} alt="search" />
       </Link>
     </form>

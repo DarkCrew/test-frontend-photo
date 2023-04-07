@@ -12,6 +12,11 @@ class PhotosApi {
     );
     return result;
   }
+
+  static async getNextPagePhotos(url: string): Promise<AxiosResponse> {
+    const result = await ManagerAppApi.get(url);
+    return result;
+  }
 }
 
 export default PhotosApi;

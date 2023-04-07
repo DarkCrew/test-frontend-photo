@@ -2,9 +2,8 @@
 import React, { ReactElement } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import PhotosApi from 'core/api/PhotosApi';
 import KEY_WORDS from 'store/KeyWords';
-import { changeValue, getPhotos } from 'store/redux/slices/searchSlice';
+import { changeValue } from 'store/redux/slices/searchSlice';
 import getRandomNumbers from 'utils/GetRandomNumbers';
 
 import Header from 'components/Header/Header';
@@ -16,12 +15,8 @@ const SearchImage = (): ReactElement => {
   const randomNumbersArr: number[] = getRandomNumbers(7, 1, 40);
   const dispatch = useDispatch();
 
-  const getAxiosPhotos = async (searchVal: string) => {
+  const search = async (searchVal: string) => {
     dispatch(changeValue(String(searchVal)));
-
-    const { data } = await PhotosApi.getPhotos(String(searchVal));
-    const { photos } = data;
-    dispatch(getPhotos(photos));
   };
 
   return (
@@ -43,14 +38,14 @@ const SearchImage = (): ReactElement => {
                       <Link
                         to="/category"
                         onClick={() => {
-                          getAxiosPhotos(String(KEY_WORDS[elem]));
+                          search(String(KEY_WORDS[elem]));
                         }}
                       >{`${KEY_WORDS[elem]},`}</Link>
                     ) : (
                       <Link
                         to="/category"
                         onClick={() => {
-                          getAxiosPhotos(String(KEY_WORDS[elem]));
+                          search(String(KEY_WORDS[elem]));
                         }}
                       >{`${KEY_WORDS[elem]}`}</Link>
                     );
