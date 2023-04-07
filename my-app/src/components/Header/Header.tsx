@@ -19,6 +19,7 @@ const Header = ({ search, clear }: Props): ReactElement => {
   const dispatch = useDispatch();
 
   const clearSearch = (): void => {
+    document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
     dispatch(changeValue(''));
   };
 

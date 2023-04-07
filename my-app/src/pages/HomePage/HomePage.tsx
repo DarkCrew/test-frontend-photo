@@ -1,7 +1,4 @@
 import React, { ReactElement } from 'react';
-import { useDispatch } from 'react-redux';
-import PhotosApi from 'core/api/PhotosApi';
-import { getPhotos } from 'store/redux/slices/searchSlice';
 
 import Header from 'components/Header/Header';
 import Main from 'components/Main/Main';
@@ -11,7 +8,6 @@ import styles from './HomePage.module.scss';
 
 const HomePage = (): ReactElement => {
   const [scroll, setScroll] = React.useState(0);
-  const dispatch = useDispatch();
 
   const handleScroll = (): void => {
     setScroll(window.scrollY);
@@ -20,16 +16,6 @@ const HomePage = (): ReactElement => {
   React.useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const getNewPhotos = async (): Promise<void> => {
-    const { data } = await PhotosApi.getCuratedPhotos('curated');
-    const { photos } = data;
-    dispatch(getPhotos(photos));
-  };
-
-  React.useEffect(() => {
-    getNewPhotos();
   }, []);
 
   return (
