@@ -1,5 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PhotoItem } from 'core/api/Models';
@@ -119,7 +119,7 @@ const CategoryPage = (): ReactElement => {
             {photosRedux.length !== 0 && <p className={styles.title}>{searchValRedux} Photos</p>}
             <div className={styles.photos}>
               {photosRedux.map((elem: PhotoItem) => {
-                return <Image {...elem} />;
+                return <Image {...elem} key={elem.id} />;
               })}
             </div>
             {photosRedux.length === 0 && <NoResults />}

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -16,11 +15,11 @@ const Search = (): ReactElement => {
 
   const [searchVal, setSearchVal] = React.useState(searchValRedux);
 
-  const search = async () => {
+  const search = async (): Promise<void> => {
     dispatch(changeValue(String(searchVal)));
   };
 
-  const searchByEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const searchByEnter = (event: React.KeyboardEvent<HTMLInputElement>): void => {
     if (event.key === 'Enter') {
       event.preventDefault();
       navigate('/category');

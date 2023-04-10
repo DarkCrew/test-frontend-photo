@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -19,7 +18,7 @@ const SearchImage = (): ReactElement => {
   const photosRedux: PhotoItem[] = useSelector((state: RootState) => state.search.photos);
   const dispatch = useDispatch();
 
-  const search = async (searchVal: string) => {
+  const search = async (searchVal: string): Promise<void> => {
     dispatch(changeValue(String(searchVal)));
   };
 
@@ -52,14 +51,14 @@ const SearchImage = (): ReactElement => {
                     return index !== randomNumbersArr.length - 1 ? (
                       <Link
                         to="/category"
-                        onClick={() => {
+                        onClick={(): void => {
                           search(String(KEY_WORDS[elem]));
                         }}
                       >{`${KEY_WORDS[elem]},`}</Link>
                     ) : (
                       <Link
                         to="/category"
-                        onClick={() => {
+                        onClick={(): void => {
                           search(String(KEY_WORDS[elem]));
                         }}
                       >{`${KEY_WORDS[elem]}`}</Link>

@@ -1,5 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PhotoItem } from 'core/api/Models';
@@ -49,7 +49,6 @@ const Main = (): ReactElement => {
 
   const getNewPhotos = async (): Promise<void> => {
     const { data } = await PhotosApi.getCuratedPhotos('curated');
-    console.log(data);
     setTotalCount(data.total_results);
     if (data.next_page) {
       setNextPage(data.next_page);
@@ -100,7 +99,7 @@ const Main = (): ReactElement => {
           </div>
           <div className={styles.photos}>
             {photosRedux.map((elem: PhotoItem) => {
-              return <Image {...elem} />;
+              return <Image {...elem} key={elem.id} />;
             })}
           </div>
         </div>
